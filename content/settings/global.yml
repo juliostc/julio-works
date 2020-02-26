@@ -5,8 +5,7 @@ siteDescription: >-
   Netlify CMS and React.
 socialMediaCard:
   image: /images/uploads/card-og.png
-  twitterCreatorAccount: '@Jinksi'
+  twitterCreatorAccount: '@julioworks'
   twitterSiteAccount: ''
-headerScripts: |-
-  <!-- Add your analytics scripts / verification meta here -->
+headerScripts: <!-- Add your analytics scripts / verification meta here -->
 enableServiceWorker: false
