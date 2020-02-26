@@ -8,6 +8,8 @@ import Contact from '../src/views/Contact'
 import Blog from '../src/views/Blog'
 import SinglePost from '../src/views/SinglePost'
 
+import * as ColorWidget from 'netlify-cms-widget-color'
+
 console.log('React version', React.version)
 
 const CMS = window.CMS
@@ -40,8 +42,11 @@ CMS.registerPreviewTemplate('posts', ({ entry }) => (
   <SinglePost fields={entry.toJS().data} />
 ))
 
+//Additional Widgets!
+CMS.registerWidget('color', ColorWidget.Control)
+
 // Return to home when user logging out
-window.netlifyIdentity.on('logout', function () {
+window.netlifyIdentity.on('logout', function() {
   document.location.href = '/'
 })
 

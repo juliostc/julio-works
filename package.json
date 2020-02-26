@@ -20,13 +20,16 @@
     "sw-precache": "^5.2.0"
   },
   "dependencies": {
+    "@pake/react-color": "^3.0.0",
     "@researchgate/react-intersection-observer": "^1.0.1",
+    "create-react-class": "^15.6.3",
     "date-fns": "^2.2.1",
     "dom-form-serializer": "^1.0.7",
     "intersection-observer": "^0.7.0",
     "lodash": "^4.17.15",
     "modern-normalize": "^0.5.0",
     "moveto": "^1.8.2",
+    "netlify-cms-widget-color": "^3.0.1",
     "netlify-identity-widget": "^1.5.5",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
