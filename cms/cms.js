@@ -9,6 +9,9 @@ import Blog from '../src/views/Blog'
 import SinglePost from '../src/views/SinglePost'
 
 import * as ColorWidget from 'netlify-cms-widget-color'
+import ColumnWidgetMaker from './ColumnWidget'
+
+import { BrowserRouter as Router } from 'react-router-dom'
 
 console.log('React version', React.version)
 
@@ -36,14 +39,112 @@ CMS.registerPreviewTemplate('contact-page', ({ entry }) => (
   <Contact fields={entry.toJS().data} siteTitle={globalSettings.siteTitle} />
 ))
 CMS.registerPreviewTemplate('blog-page', ({ entry }) => (
-  <Blog fields={entry.toJS().data} posts={posts} />
+  <Router>
+    <Blog fields={entry.toJS().data} posts={posts} />
+  </Router>
 ))
 CMS.registerPreviewTemplate('posts', ({ entry }) => (
-  <SinglePost fields={entry.toJS().data} />
+  <Router>
+    <SinglePost fields={entry.toJS().data} />
+  </Router>
 ))
 
 //Additional Widgets!
 CMS.registerWidget('color', ColorWidget.Control)
+
+// const ColumnWidget = ColumnWidgetMaker(CMS)
+// CMS.registerWidget('column', ColumnWidget.Control, ColumnWidget.Preview)
+
+CMS.registerWidget('label', props => {
+  const { forID, classNameWrapper, field } = props
+  return (
+    <div id={forID} className={classNameWrapper}>
+      {field.label}
+    </div>
+  )
+})
+
+// CMS.registerEditorComponent({
+//   // Internal id of the component
+//   id: 'containerRow',
+//   // Visible label
+//   label: 'Row {',
+//   // Fields the user need to fill out when adding an instance of the component
+
+//   fields: [{ name: 'label', label: 'Label', widget: 'hidden' }],
+//   // Pattern to identify a block as being an instance of this component
+//   pattern: /^::: row\s*([\S]+)?\s*$/,
+//   // Function to extract data elements from the regexp match
+//   fromBlock: function(match) {
+//     return {
+//       content: match[1],
+//     }
+//   },
+//   // Function to create a text block from an instance of this component
+//   toBlock: function(obj) {
+//     return '::: row' // + (obj.classes || '')
+//   },
+//   // Preview output for this component. Can either be a string or a React component
+//   // (component gives better render performance)
+//   toPreview: function(obj) {
+//     return 'ROW START {'
+//   },
+// })
+
+// CMS.registerEditorComponent({
+//   // Internal id of the component
+//   id: 'containerColumn',
+//   // Visible label
+//   label: 'Column {',
+//   // Fields the user need to fill out when adding an instance of the component
+//   // fields: [{ name: 'classes', label: 'Classes', widget: 'string' }],
+//   fields: null,
+//   // Pattern to identify a block as being an instance of this component
+//   pattern: /^::: column\s*([\S]+)?\s*$/,
+//   // Function to extract data elements from the regexp match
+//   fromBlock: function(match) {
+//     return {
+//       content: match[1],
+//     }
+//   },
+//   // Function to create a text block from an instance of this component
+//   toBlock: function(obj) {
+//     return '::: column' // + (obj.classes || '')
+//   },
+//   // Preview output for this component. Can either be a string or a React component
+//   // (component gives better render performance)
+//   toPreview: function(obj) {
+//     return 'COLUMN START {'
+//   },
+// })
+
+// CMS.registerEditorComponent({
+//   // Internal id of the component
+//   id: 'containerEnd',
+//   // Visible label
+//   label: '}',
+//   // Fields the user need to fill out when adding an instance of the component
+//   // fields: [{ name: 'classes', label: 'Classes', widget: 'string' }],
+//   // Pattern to identify a block as being an instance of this component
+//   pattern: /^:::\s*$/,
+//   // Function to extract data elements from the regexp match
+//   // fromBlock: function(match) {
+//   //   return {
+//   //     content: match[1],
+//   //   }
+//   // },
+//   // Function to create a text block from an instance of this component
+//   toBlock: function(obj) {
+//     return ':::'
+//   },
+//   // Preview output for this component. Can either be a string or a React component
+//   // (component gives better render performance)
+//   toPreview: function(obj) {
+//     return '} END'
+//   },
+// })
+
+// console.log(CMS.getWidgets())
 
 // Return to home when user logging out
 window.netlifyIdentity.on('logout', function() {

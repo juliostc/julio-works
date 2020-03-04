@@ -9,3 +9,15 @@ socialMediaCard:
   twitterSiteAccount: ''
 headerScripts: <!-- Add your analytics scripts / verification meta here -->
 enableServiceWorker: false
+teste: |-
+  ::: row outer
+  # Header One
+
+  Outer contents.
+
+  ::: column inner
+  Inner contents. 
+  :::
+
+  More outer contents.
+  :::

@@ -1,6 +1,6 @@
 {
-  "name": "netlify-cms-react-starter",
-  "version": "0.5.1",
+  "name": "julio-works",
+  "version": "0.2.0",
   "private": true,
   "devDependencies": {
     "chokidar-cli": "^2.0.0",
@@ -31,13 +31,14 @@
     "moveto": "^1.8.2",
     "netlify-cms-widget-color": "^3.0.1",
     "netlify-identity-widget": "^1.5.5",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
     "react-feather": "^2.0.3",
     "react-helmet": "^5.2.1",
     "react-markdown": "4.2.2",
     "react-router-dom": "^5.0.1",
-    "react-snapshot": "^1.3.0"
+    "react-snapshot": "^1.3.0",
+    "remark-containers": "^1.1.2"
   },
   "scripts": {
     "start": "npm-run-all prepare-content -p start:content start:app start:cms",

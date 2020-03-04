@@ -3,9 +3,13 @@ backend:
   name: git-gateway
   branch: master # Branch to update (optional; defaults to master)
 
+local_backend: true
+
 # display_url: https://netlify-cms-react-starter.netlify.com # This url will display in the top-right of the CMS
 media_folder: 'public/images/uploads' # Media files will be stored in the repo under static/images/uploads
 public_folder: '/images/uploads' # The src attribute for uploaded media will begin with /images/uploads
+
+publish_mode: editorial_workflow
 
 collections: # A list of collections the CMS should be able to edit
   - name: 'pages'
@@ -244,24 +248,68 @@ collections: # A list of collections the CMS should be able to edit
       preview: true
     folder: content/projects
     identifier_field: id
-    slug: '{{slug}}'
+    # extension: json
+    # format: json
+    slug: '{{fields.date.year}}-{{id}}'
     create: true # Allow users to create new documents in this collection
     fields: # The fields each document in this collection have
-      - { label: Id, name: id, widget: string }
-      - { label: Emoji, name: emoji, widget: string }
-      - { label: Title, name: title, widget: string }
       - label: 'Status'
         name: 'status'
         widget: 'select'
         options: ['Published', 'Featured', 'Draft']
         default: 'Published'
-      - { label: Date / Order, name: date, widget: datetime }
+      - { label: Id, name: id, widget: string }
+      - { label: Title, name: title, widget: string }
+      - { label: Emoji, name: emoji, widget: string }
+      - { label: Type, name: type, widget: string }
+      - label: 'Categories'
+        name: 'categories'
+        widget: 'list'
+        required: false
+
+      - label: 'Tools'
+        name: 'tools'
+        widget: 'list'
+        required: false
+
+      - {
+          label: Team,
+          name: team,
+          widget: list,
+          required: false,
+          fields:
+            [
+              { label: Name, name: name, widget: string },
+              { label: Link, name: link, widget: string },
+            ],
+        }
+
+      - label: Date
+        name: date
+        widget: object
+        fields:
+          - label: Year
+            name: year
+            widget: string
+          - label: Month
+            name: month
+            widget: string
+            required: false
+          - label: Day
+            name: day
+            widget: string
+            required: false
       - label: Featured Image
         name: featuredImage
         widget: object
         fields:
           - { label: Image, name: image, widget: image }
-          - { label: Crop Position, name: cropPosition, widget: string }
+          - {
+              label: Crop Position,
+              name: cropPosition,
+              widget: string,
+              required: false,
+            }
         required: false
 
       - label: Header Image
@@ -271,24 +319,54 @@ collections: # A list of collections the CMS should be able to edit
 
       - label: Palette
         name: palette
+        widget: object
         fields:
-          - { label: Primary Color, name: primary, widget: image }
-          - { label: Crop Position, name: cropPosition, widget: string }
-        required: false
+          - { label: Primary Color, name: primary, widget: color }
+          - {
+              label: Secondary Color,
+              name: secondary,
+              widget: color,
+              required: false,
+            }
 
       - { label: Description, name: description, widget: text }
-      - { label: Content, name: body, widget: markdown }
-      - label: 'Categories'
-        name: 'categories'
-        widget: 'list'
+
+      - {
+          label: Youtube Video Id,
+          name: youtube id,
+          widget: string,
+          required: false,
+        }
+      - {
+          label: External Links,
+          name: externalLinks,
+          widget: list,
+          required: false,
+          fields: [
+              {
+                label: Type,
+                name: type,
+                #widget: relation,
+                #collection: 'externalLinkTypes',
+                #earchFields: ['title'],
+                #valueField: 'title',
+                widget: string,
+              },
+              { label: Link, name: link, widget: string },
+              {
+                label: Caption,
+                name: caption,
+                widget: string,
+                required: false,
+              },
+            ],
+        }
+
+      - label: Body
+        name: body
         required: false
-        fields:
-          - label: 'Category'
-            name: 'category'
-            widget: 'relation'
-            collection: 'postCategories'
-            searchFields: ['title']
-            valueField: 'title'
+        widget: markdown
+
       - label: 'Meta'
         required: false
         name: 'meta'
