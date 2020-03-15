@@ -3,7 +3,7 @@ import cx from 'clsx'
 
 import { Link as RouterLink } from 'react-router-dom'
 
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 //MUI
 import Card from '@material-ui/core/Card'

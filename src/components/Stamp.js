@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import concat from 'clsx'
 
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
 import Box from '@material-ui/core/Box'
 
