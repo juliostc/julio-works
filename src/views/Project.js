@@ -37,6 +37,7 @@ class ProjectView extends Component {
 
     const extras = []
     const { tools, team } = project
+
     if (tools && tools.length > 0) extras.push(['Tools', tools.join(', ')])
     if (team && team.length > 0)
       extras.push([
@@ -46,6 +47,7 @@ class ProjectView extends Component {
         )),
       ])
 
+    console.log(project.body)
     return (
       <ProjectThemeProvider project={project} type="light">
         <Surface>
@@ -255,7 +257,9 @@ const ViewComponents = {
           </Grid>
         )}
 
-        <Box mt={4}>{body && <Content source={body || children} />}</Box>
+        <Box mt={4}>
+          {(body || children) && <Content source={body || children} />}
+        </Box>
       </CentralColumn>
     )
   },

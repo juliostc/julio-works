@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button'
 import Link from '@material-ui/core/Link'
 
 const styles = theme => {
-  console.log(theme)
   return {
     root: {
       flexGrow: 1,

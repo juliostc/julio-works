@@ -9,10 +9,11 @@ const getImgixUrl = ({ path, size }) =>
   `${imgixUrl}${encodeURI(path)}?w=${size}&fit=max&auto=compress,format`
 
 const parseFilename = filename => {
-  const parts = filename.match(/(.+)\.([\w]+)$/)
+  // const parts = filename.match(/(.+)\.([\w]+)$/) -> removed the $
+  const parts = filename.match(/(.+)\.([\w]+)/)
   return {
     filename: parts[1],
-    extname: parts[2]
+    extname: parts[2],
   }
 }
 
@@ -66,5 +67,5 @@ module.exports = {
   sizes,
   outputDir,
   resizedDir,
-  imgixUrl
+  imgixUrl,
 }

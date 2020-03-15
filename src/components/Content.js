@@ -20,6 +20,7 @@ const encodeMarkdownURIs = (source = '') => {
 
 export const ImageWithSrcset = ({ nodeKey, src, alt, ...props }) => {
   const decodedSrc = decodeURI(src)
+  console.log(decodedSrc)
   return (
     <img
       className="Content--Image"

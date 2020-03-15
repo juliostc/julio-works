@@ -74,7 +74,7 @@ export default function ProjectThemeProvider({
           ...globaltheme,
           palette: { ...newPalette },
         }
-        console.log(createMuiTheme(theme))
+
         return createMuiTheme(theme)
       }}
     >
