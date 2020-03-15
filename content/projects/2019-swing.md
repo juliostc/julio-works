@@ -31,3 +31,19 @@ externalLinks:
   - type: youtube
     link: 'http://www.youtube.com/watch?v=zWfP_N0SDl0'
 ---
+This is the first offical music video by Early Jazz Big Band [Cabareto](https://www.facebook.com/cabaretoejb)!
+::: row
+::: column
+
+![Bandmate Leonardo playing the sax](/images/uploads/sax.png "Bandmate Leonardo playing the sax")
+
+
+:::
+::: column
+
+
+![Bandmate Matheus playing the trombone](/images/uploads/trombone.png "Bandmate Matheus playing the trombone")
+
+
+:::
+:::
