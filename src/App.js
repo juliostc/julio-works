@@ -4,19 +4,54 @@ import Helmet from 'react-helmet'
 
 import ScrollToTop from './components/ScrollToTop'
 import Meta from './components/Meta'
-import Home from './views/Home'
-import About from './views/About'
-import Blog from './views/Blog'
-import SinglePost from './views/SinglePost'
-import Contact from './views/Contact'
-import NoMatch from './views/NoMatch'
-import Nav from './components/Nav'
+// import Home from './old-views/Home'
+// import About from './old-views/About'
+// import Blog from './old-views/Blog'
+// import SinglePost from './old-views/SinglePost'
+// import Contact from './old-views/Contact'
+
+// import Nav from './components/Nav'
 import Footer from './components/Footer'
-import GithubCorner from './components/GithubCorner'
+// import GithubCorner from './components/GithubCorner'
 import ServiceWorkerNotifications from './components/ServiceWorkerNotifications'
-import data from './data.json'
+
+//Views
+import HomeView from './views/Home'
+import WorksView from './views/Works'
+import ProjectView from './views/Project'
+import AboutView from './views/About'
+import NoMatch from './views/NoMatch'
+
+//Material UI
+
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
+import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
+
+//my components
+import NavBar from './components/Navbar'
+
+import data, { getDocument, getDocuments } from './util/data'
 import { slugify } from './util/url'
 import { documentHasTerm, getCollectionTerms } from './util/collection'
+
+let theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+    primary: { main: '#EE4343' },
+    // secondary: orange,
+    background: {
+      // default: "#131313",
+      default: '#000',
+      paper: '#10100f',
+    },
+  },
+  typography: {
+    fontFamily: 'Open Sans, sans-serif',
+  },
+})
+
+theme = responsiveFontSizes(theme)
 
 const RouteWithMeta = ({ component: Component, ...props }) => (
   <Route
@@ -32,131 +67,136 @@ const RouteWithMeta = ({ component: Component, ...props }) => (
 
 class App extends Component {
   state = {
-    data
+    data,
   }
 
-  getDocument = (collection, name) =>
-    this.state.data[collection] &&
-    this.state.data[collection].filter(page => page.name === name)[0]
-
-  getDocuments = collection => this.state.data[collection] || []
-
-  render () {
-    const globalSettings = this.getDocument('settings', 'global')
+  render() {
+    const globalSettings = getDocument('settings', 'global')
     const {
       siteTitle,
       siteUrl,
       siteDescription,
       socialMediaCard,
-      headerScripts
+      headerScripts,
     } = globalSettings
 
-    const posts = this.getDocuments('posts').filter(
-      post => post.status !== 'Draft'
-    )
-    const categoriesFromPosts = getCollectionTerms(posts, 'categories')
-    const postCategories = this.getDocuments('postCategories').filter(
-      category => categoriesFromPosts.indexOf(category.name.toLowerCase()) >= 0
-    )
+    //this should go to the works view
+    // const posts = this.getDocuments('posts').filter(
+    //   post => post.status !== 'Draft'
+    // )
+    console.warn('fix this!!!')
+
+    const { projects } = data
+    const categoriesFromPosts = getCollectionTerms(projects, 'categories')
+    // const postCategories = getDocuments('postCategories').filter(
+    //   category => categoriesFromPosts.indexOf(category.name.toLowerCase()) >= 0
+    // )
 
     return (
-      <Router>
-        <div className='React-Wrap'>
-          <ScrollToTop />
-          <ServiceWorkerNotifications reloadOnUpdate />
-          <GithubCorner url='https://github.com/Jinksi/netlify-cms-react-starter' />
-          <Helmet
-            defaultTitle={siteTitle}
-            titleTemplate={`${siteTitle} | %s`}
-          />
-          <Meta
-            headerScripts={headerScripts}
-            absoluteImageUrl={
-              socialMediaCard &&
-              socialMediaCard.image &&
-              siteUrl + socialMediaCard.image
-            }
-            twitterCreatorAccount={
-              socialMediaCard && socialMediaCard.twitterCreatorAccount
-            }
-            twitterSiteAccount={
-              socialMediaCard && socialMediaCard.twitterSiteAccount
-            }
-          />
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <div
+            className="React-Wrap"
+            style={{ minHeight: '100vh', position: 'relative' }}
+          >
+            <ScrollToTop />
+            <ServiceWorkerNotifications reloadOnUpdate />
 
-          <Nav />
-
-          <Switch>
-            <RouteWithMeta
-              path='/'
-              exact
-              component={Home}
-              description={siteDescription}
-              fields={this.getDocument('pages', 'home')}
+            <Helmet
+              defaultTitle={siteTitle}
+              titleTemplate={`${siteTitle} | %s`}
             />
-            <RouteWithMeta
-              path='/about/'
-              exact
-              component={About}
-              fields={this.getDocument('pages', 'about')}
-            />
-            <RouteWithMeta
-              path='/contact/'
-              exact
-              component={Contact}
-              fields={this.getDocument('pages', 'contact')}
-              siteTitle={siteTitle}
-            />
-            <RouteWithMeta
-              path='/blog/'
-              exact
-              component={Blog}
-              fields={this.getDocument('pages', 'blog')}
-              posts={posts}
-              postCategories={postCategories}
+            <Meta
+              headerScripts={headerScripts}
+              absoluteImageUrl={
+                socialMediaCard &&
+                socialMediaCard.image &&
+                siteUrl + socialMediaCard.image
+              }
+              twitterCreatorAccount={
+                socialMediaCard && socialMediaCard.twitterCreatorAccount
+              }
+              twitterSiteAccount={
+                socialMediaCard && socialMediaCard.twitterSiteAccount
+              }
             />
 
-            {posts.map((post, index) => {
-              const path = slugify(`/blog/${post.title}`)
-              const nextPost = posts[index - 1]
-              const prevPost = posts[index + 1]
-              return (
-                <RouteWithMeta
-                  key={path}
-                  path={path}
-                  exact
-                  component={SinglePost}
-                  fields={post}
-                  nextPostURL={nextPost && slugify(`/blog/${nextPost.title}/`)}
-                  prevPostURL={prevPost && slugify(`/blog/${prevPost.title}/`)}
-                />
-              )
-            })}
+            <NavBar />
 
-            {postCategories.map(postCategory => {
-              const slug = slugify(postCategory.title)
-              const path = slugify(`/blog/category/${slug}`)
-              const categoryPosts = posts.filter(post =>
-                documentHasTerm(post, 'categories', slug)
-              )
-              return (
-                <RouteWithMeta
-                  key={path}
-                  path={path}
-                  exact
-                  component={Blog}
-                  fields={this.getDocument('pages', 'blog')}
-                  posts={categoryPosts}
-                  postCategories={postCategories}
-                />
-              )
-            })}
+            <Switch>
+              <RouteWithMeta
+                path={['/', '/projects']}
+                exact
+                component={WorksView}
+                description={siteDescription}
+                fields={getDocument('pages', 'home')}
+                projects={data.projects}
+              />
+              {/* <RouteWithMeta
+                path="/about/"
+                exact
+                component={AboutView}
+                fields={getDocument('pages', 'about')}
+              />
 
-            <Route render={() => <NoMatch siteUrl={siteUrl} />} />
-          </Switch>
-          <Footer />
-        </div>
-      </Router>
+              <RouteWithMeta
+                path="/projects/"
+                exact
+                component={WorksView}
+                fields={getDocument('pages', 'projects')}
+                projects={projects}
+                //postCategories={postCategories}
+              /> */}
+
+              {data.projects.map((project, index) => {
+                // const path = slugify(`/projects/${project.id}`)
+                const path = `/projects/${project.id}`
+
+                const nextProject = projects[index - 1]
+                const prevProject = projects[index + 1]
+                return (
+                  <RouteWithMeta
+                    key={path}
+                    path={path}
+                    exact
+                    component={ProjectView}
+                    project={project}
+                    nextprojectURL={
+                      nextProject && slugify(`/blog/${nextProject.title}/`)
+                    }
+                    prevprojectURL={
+                      prevProject && slugify(`/blog/${prevProject.title}/`)
+                    }
+                  />
+                )
+              })}
+
+              {/* {postCategories.map(postCategory => {
+                const slug = slugify(postCategory.title)
+                const path = slugify(`/blog/category/${slug}`)
+                const categoryPosts = posts.filter(post =>
+                  documentHasTerm(post, 'categories', slug)
+                )
+                return (
+                  <RouteWithMeta
+                    key={path}
+                    path={path}
+                    exact
+                    component={Blog}
+                    fields={getDocument('pages', 'blog')}
+                    posts={categoryPosts}
+                    postCategories={postCategories}
+                  />
+                )
+              })} */}
+
+              <Route render={() => <NoMatch siteUrl={siteUrl} />} />
+            </Switch>
+            <Footer />
+          </div>
+        </Router>
+      </MuiThemeProvider>
     )
   }
 }

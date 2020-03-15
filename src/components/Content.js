@@ -7,6 +7,8 @@ import MarkdownContainers from 'remark-containers'
 import { getImageSrc, getImageSrcset } from '../util/getImageUrl'
 import './Content.css'
 
+import Grid from '@material-ui/core/Grid'
+
 const encodeMarkdownURIs = (source = '') => {
   const markdownLinkRegex = /\[(?:\[[^\]]*\]|[^[\]])*\]\([ \t]*<?((?:\([^)]*\)|[^()])*?)>?[ \t]*(['"].*?\6[ \t]*)?\)/g
   return source.replace(markdownLinkRegex, (match, linkURI) => {
@@ -16,7 +18,7 @@ const encodeMarkdownURIs = (source = '') => {
   })
 }
 
-const ImageWithSrcset = ({ nodeKey, src, alt, ...props }) => {
+export const ImageWithSrcset = ({ nodeKey, src, alt, ...props }) => {
   const decodedSrc = decodeURI(src)
   return (
     <img
@@ -51,8 +53,16 @@ const Content = ({ source, src, className = '' }) => (
     renderers={{
       image: ImageWithSrcset,
       html: HtmlBlock,
-      row: props => <div>{props.children}</div>,
-      column: props => <div className="coluna">{props.children}</div>,
+      row: props => (
+        <Grid container spacing={2}>
+          {props.children}
+        </Grid>
+      ),
+      column: props => (
+        <Grid item xs>
+          {props.children}
+        </Grid>
+      ),
     }}
   />
 )
