@@ -2,11 +2,12 @@ import React from 'react'
 
 import '../src/globalStyles.css'
 import data from '../src/data.json'
-import Home from '../src/views/Home'
-import About from '../src/views/About'
-import Contact from '../src/views/Contact'
-import Blog from '../src/views/Blog'
-import SinglePost from '../src/views/SinglePost'
+// import Home from '../src/views/Home'
+// import About from '../src/views/About'
+// import Contact from '../src/views/Contact'
+// import Blog from '../src/views/Blog'
+// import SinglePost from '../src/views/SinglePost'
+import ProjectView from '../src/views/Project'
 
 import * as ColorWidget from 'netlify-cms-widget-color'
 import ColumnWidgetMaker from './ColumnWidget'
@@ -29,25 +30,31 @@ const globalSettings = getDocument('settings', 'global')
 const posts = getDocuments('posts')
 
 // Preview Templates
-CMS.registerPreviewTemplate('home-page', ({ entry }) => (
-  <Home fields={entry.toJS().data} />
-))
-CMS.registerPreviewTemplate('about-page', ({ entry }) => (
-  <About fields={entry.toJS().data} />
-))
-CMS.registerPreviewTemplate('contact-page', ({ entry }) => (
-  <Contact fields={entry.toJS().data} siteTitle={globalSettings.siteTitle} />
-))
-CMS.registerPreviewTemplate('blog-page', ({ entry }) => (
-  <Router>
-    <Blog fields={entry.toJS().data} posts={posts} />
-  </Router>
-))
-CMS.registerPreviewTemplate('posts', ({ entry }) => (
-  <Router>
-    <SinglePost fields={entry.toJS().data} />
-  </Router>
-))
+// CMS.registerPreviewTemplate('home-page', ({ entry }) => (
+//   <Home fields={entry.toJS().data} />
+// ))
+// CMS.registerPreviewTemplate('about-page', ({ entry }) => (
+//   <About fields={entry.toJS().data} />
+// ))
+// CMS.registerPreviewTemplate('contact-page', ({ entry }) => (
+//   <Contact fields={entry.toJS().data} siteTitle={globalSettings.siteTitle} />
+// ))
+// CMS.registerPreviewTemplate('blog-page', ({ entry }) => (
+//   <Router>
+//     <Blog fields={entry.toJS().data} posts={posts} />
+//   </Router>
+// ))
+// CMS.registerPreviewTemplate('posts', ({ entry }) => (
+//   <Router>
+//     <SinglePost fields={entry.toJS().data} />
+//   </Router>
+// ))
+
+// CMS.registerPreviewTemplate('projects', ({ entry }) => (
+//   <Router>
+//     <ProjectView project={entry.toJS().data} />
+//   </Router>
+// ))
 
 //Additional Widgets!
 CMS.registerWidget('color', ColorWidget.Control)
@@ -55,14 +62,14 @@ CMS.registerWidget('color', ColorWidget.Control)
 // const ColumnWidget = ColumnWidgetMaker(CMS)
 // CMS.registerWidget('column', ColumnWidget.Control, ColumnWidget.Preview)
 
-CMS.registerWidget('label', props => {
-  const { forID, classNameWrapper, field } = props
-  return (
-    <div id={forID} className={classNameWrapper}>
-      {field.label}
-    </div>
-  )
-})
+// CMS.registerWidget('label', props => {
+//   const { forID, classNameWrapper, field } = props
+//   return (
+//     <div id={forID} className={classNameWrapper}>
+//       {field.label}
+//     </div>
+//   )
+// })
 
 // CMS.registerEditorComponent({
 //   // Internal id of the component
