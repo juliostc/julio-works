@@ -10,7 +10,7 @@ import data from '../src/data.json'
 import ProjectView from '../src/views/Project'
 
 import * as ColorWidget from 'netlify-cms-widget-color'
-import ColumnWidgetMaker from './ColumnWidget'
+// import ColumnWidgetMaker from './ColumnWidget'
 
 import { BrowserRouter as Router } from 'react-router-dom'
 
