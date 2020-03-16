@@ -258,7 +258,7 @@ const ViewComponents = {
         )}
 
         <Box mt={4}>
-          {(body || children) && <Content source={body || children} />}
+          {/* {(body || children) && <Content source={body || children} />} */}
         </Box>
       </CentralColumn>
     )

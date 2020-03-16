@@ -46,6 +46,8 @@ const HtmlBlock = ({ value }) => {
 
 const plugins = [[MarkdownContainers, null]]
 
+console.warn('contentjs')
+
 const Content = ({ source, src, className = '' }) => (
   <Marked
     className={`Content ${className}`}

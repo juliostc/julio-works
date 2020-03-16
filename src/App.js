@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 
 import ScrollToTop from './components/ScrollToTop'
 import Meta from './components/Meta'
+import ProjectCard from './components/ProjectCard'
 // import Home from './old-views/Home'
 // import About from './old-views/About'
 // import Blog from './old-views/Blog'
@@ -66,9 +67,9 @@ const RouteWithMeta = ({ component: Component, ...props }) => (
 )
 
 class App extends Component {
-  state = {
-    data,
-  }
+  // state = {
+  //   data,
+  // }
 
   render() {
     const globalSettings = getDocument('settings', 'global')
@@ -87,15 +88,17 @@ class App extends Component {
     console.warn('fix this!!!')
 
     const { projects } = data
-    const categoriesFromPosts = getCollectionTerms(projects, 'categories')
+    // const projects = []
+    // const categoriesFromPosts = getCollectionTerms(projects, 'categories')
     // const postCategories = getDocuments('postCategories').filter(
     //   category => categoriesFromPosts.indexOf(category.name.toLowerCase()) >= 0
     // )
 
     return (
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router>
+      <Router>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+
           <div
             className="React-Wrap"
             style={{ minHeight: '100vh', position: 'relative' }}
@@ -107,6 +110,7 @@ class App extends Component {
               defaultTitle={siteTitle}
               titleTemplate={`${siteTitle} | %s`}
             />
+
             <Meta
               headerScripts={headerScripts}
               absoluteImageUrl={
@@ -131,8 +135,9 @@ class App extends Component {
                 component={WorksView}
                 description={siteDescription}
                 fields={getDocument('pages', 'home')}
-                projects={data.projects}
+                projects={projects}
               />
+
               {/* <RouteWithMeta
                 path="/about/"
                 exact
@@ -149,12 +154,13 @@ class App extends Component {
                 //postCategories={postCategories}
               /> */}
 
-              {data.projects.map((project, index) => {
-                // const path = slugify(`/projects/${project.id}`)
-                const path = `/projects/${project.id}`
+              {projects.map((project, index) => {
+                const path = slugify(`/projects/${project.id}`)
+                // const path = `/projects/${project.id}`
 
                 const nextProject = projects[index - 1]
                 const prevProject = projects[index + 1]
+
                 return (
                   <RouteWithMeta
                     key={path}
@@ -193,10 +199,11 @@ class App extends Component {
 
               <Route render={() => <NoMatch siteUrl={siteUrl} />} />
             </Switch>
+
             <Footer />
           </div>
-        </Router>
-      </MuiThemeProvider>
+        </MuiThemeProvider>
+      </Router>
     )
   }
 }

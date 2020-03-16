@@ -32,7 +32,7 @@ const styles = theme => {
 }
 
 class WorksView extends Component {
-  constructor({ projects, ...props }) {
+  constructor({ projects = [], ...props }) {
     super(props)
     this.allProjects = projects
     this.state = { projects, filtered: false, filterTerms: [] }

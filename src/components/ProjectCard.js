@@ -166,7 +166,8 @@ const ProjectCard = ({ project, ...props }) => {
         </Fragment>
       ) : null}
 
-      <CardActionArea component="Link" to={'/projects/' + project.id}>
+      {/* <CardActionArea component={RouterLink} to={'/projects/' + project.id}> */}
+      <CardActionArea>
         <Link
           underline="none"
           color="inherit"

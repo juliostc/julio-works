@@ -22,14 +22,16 @@ const sortByMostRecent = (a, b) => {
   return 0
 }
 
-const projects = data.projects
-  .map(proj => ({
-    ...proj,
-    date: new Date(
-      proj.date.year + ' ' + proj.date.month + ' ' + proj.date.day
-    ),
-  }))
-  .sort(sortByMostRecent)
+const projects = !data.projects
+  ? []
+  : data.projects
+      .map(proj => ({
+        ...proj,
+        date: new Date(
+          proj.date.year + ' ' + proj.date.month + ' ' + proj.date.day
+        ),
+      }))
+      .sort(sortByMostRecent)
 
 // console.log('projects')
 // console.log(projects)
