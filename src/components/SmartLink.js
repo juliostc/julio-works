@@ -1,14 +1,15 @@
 import React from 'react'
 
 import { Link as RouterLink } from 'react-router-dom'
+import Link from '@material-ui/core/Link'
 
 export default function SmartLink({ to, children, className, ...props }) {
   return /^https?:\/\//.test(to) ? (
-    <a href={to} className>
+    <Link href={to} {...props} className>
       {children}
-    </a>
+    </Link>
   ) : (
-    <RouterLink to className>
+    <RouterLink to {...props} className>
       {children}
     </RouterLink>
   )

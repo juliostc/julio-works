@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import cx from 'clsx'
 
+import { getRelatedProjects, getNextProject } from '../util/data'
+
 //MUI
 import { withStyles, makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
@@ -8,6 +10,8 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
 //my components
+import ListedProject from '../components/ListedProject'
+import ProjectCard from '../components/ProjectCard'
 import Button from '../components/Button'
 import LazyImage from '../components/LazyImage'
 import Stamp from '../components/Stamp'
@@ -47,21 +51,28 @@ class ProjectView extends Component {
         )),
       ])
 
-    console.log(project.body)
+    const footerProjects = {
+      relatedProjects: getRelatedProjects(project),
+      nextProject: getNextProject(project),
+    }
+
     return (
-      <ProjectThemeProvider project={project} type="light">
-        <Surface>
-          <ProjectThemeProvider type="dark">
-            <Header
-              image={project.headerImage || project.featuredImage.image}
-              {...project}
-            ></Header>
-          </ProjectThemeProvider>
-          <Body extras={extras} externalLinks={project.externalLinks}>
-            {project.body}
-          </Body>
-        </Surface>
-      </ProjectThemeProvider>
+      <Fragment>
+        <ProjectThemeProvider project={project} type="light">
+          <Surface>
+            <ProjectThemeProvider type="dark">
+              <Header
+                image={project.headerImage || project.featuredImage.image}
+                {...project}
+              ></Header>
+            </ProjectThemeProvider>
+            <Body extras={extras} externalLinks={project.externalLinks}>
+              {project.body}
+            </Body>
+          </Surface>
+        </ProjectThemeProvider>
+        <Footer {...footerProjects} />
+      </Fragment>
     )
   }
 }
@@ -258,9 +269,66 @@ const ViewComponents = {
         )}
 
         <Box mt={4}>
-          {/* {(body || children) && <Content source={body || children} />} */}
+          {(body || children) && <Content source={body || children} />}
         </Box>
       </CentralColumn>
+    )
+  },
+  Footer: ({ relatedProjects, nextProject, ...props }) => {
+    const styles = makeStyles(theme => ({
+      root: {},
+      sectionTitle: {
+        marginBottom: theme.spacing(2),
+        // textTransform: "uppercase",
+        fontWeight: 'light',
+        textAlign: 'inherit',
+        [theme.breakpoints.down('xs')]: {
+          // textAlign: "center"
+        },
+      },
+    }))()
+    return (
+      <Box m={4}>
+        <Grid container spacing={8}>
+          <Grid item xs={12} sm={8}>
+            <Typography variant="subtitle2" gutterBottom color="textSecondary">
+              NEXT PROJECT
+            </Typography>
+            <ProjectThemeProvider project={nextProject}>
+              <ProjectCard project={nextProject} />
+            </ProjectThemeProvider>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <Grid container direction="column" spacing={4}>
+              <Grid item xs>
+                <Typography
+                  variant="subtitle2"
+                  gutterBottom
+                  color="textSecondary"
+                >
+                  RELATED PROJECTS
+                </Typography>
+              </Grid>
+              {/* skips 0 because 0 is literally the same project */}
+              {[1, 2, 3].map(number => {
+                return relatedProjects[number] ? (
+                  <Grid item xs>
+                    <ProjectThemeProvider project={relatedProjects[number]}>
+                      {/* <ProjectCard
+                      project={relatedProjects[number]}
+                      height="auto"
+                    /> */}
+                      <ListedProject
+                        project={relatedProjects[number]}
+                      ></ListedProject>
+                    </ProjectThemeProvider>
+                  </Grid>
+                ) : null
+              })}
+            </Grid>
+          </Grid>
+        </Grid>
+      </Box>
     )
   },
 }

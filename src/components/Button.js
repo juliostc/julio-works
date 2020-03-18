@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import cx from 'clsx'
 
-import SmartLink from './SmartLink'
+import { Link as RouterLink } from 'react-router-dom'
 
 import { withStyles } from '@material-ui/core/styles'
 
@@ -40,10 +40,13 @@ export class Button extends Component {
       ...props
     } = this.props
 
+    const routedLink = /^https?:\/\//.test(href) //if its an external link
+      ? { href } //load the href, normal behaviour
+      : { component: RouterLink, to: href } //if not, load the internal router with a to prop
+
     return (
       <MuiButton
-        component={SmartLink}
-        to={href}
+        {...routedLink}
         color={color}
         startIcon={(!type && icon) || (type && <LogoIcon type={type} />)}
         {...props}

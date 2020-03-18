@@ -124,7 +124,7 @@ const projectArraysToString = proj => {
   return proj
 }
 
-export const getSimilarProjects = project =>
+export const getRelatedProjects = project =>
   sortzzy.sort(
     projects.map(projectArraysToString),
     projectArraysToString(project),

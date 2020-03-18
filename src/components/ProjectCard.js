@@ -117,20 +117,6 @@ const ProjectCard = ({ project, ...props }) => {
   //const mediaStyles = useCoverCardMediaStyles();
   // const shadowStyles = useLightTopShadowStyles()
 
-  // const imgURL = getImageURL(project)
-
-  var isfirst = true
-  var categories = ''
-  project.categories.map(cat => {
-    var spacing = ''
-    if (!isfirst) {
-      spacing += ' • '
-    } else {
-      isfirst = false
-    }
-    categories += spacing + cat
-  })
-
   const longTitle = project.title.length > 25
 
   const smallCard =

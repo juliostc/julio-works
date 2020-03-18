@@ -155,8 +155,8 @@ class App extends Component {
               /> */}
 
               {projects.map((project, index) => {
-                const path = slugify(`/projects/${project.id}`)
-                // const path = `/projects/${project.id}`
+                // const path = slugify(`/projects/${project.id}`)
+                const path = `/projects/${project.id}`
 
                 const nextProject = projects[index - 1]
                 const prevProject = projects[index + 1]

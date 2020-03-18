@@ -36,7 +36,7 @@ export class UnderlinedLink extends Component {
       href,
       children,
       noIcon,
-      color,
+      color = 'primary',
       iconBefore,
       className,
       targetBlank,
