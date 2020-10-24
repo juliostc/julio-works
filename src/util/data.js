@@ -25,7 +25,7 @@ const sortByMostRecent = (a, b) => {
 const projects = !data.projects
   ? []
   : data.projects
-      .map(proj => ({
+      .map((proj) => ({
         ...proj,
         date: new Date(
           proj.date.year + ' ' + proj.date.month + ' ' + proj.date.day
@@ -42,7 +42,7 @@ function isEmptyOrSpaces(str) {
 
 export const getAllCategories = () => {
   const types = new Set()
-  projects.forEach(proj => {
+  projects.forEach((proj) => {
     for (const cat of proj.categories) {
       if (cat && !isEmptyOrSpaces(cat)) types.add(cat)
     }
@@ -51,22 +51,22 @@ export const getAllCategories = () => {
 }
 
 //deprecated
-export const getImageURL = (project, imageName) => {
-  imageName = imageName || 'mainImage'
-  let imgURL = {}
-  try {
-    imgURL = require('./images/' + project.id + '/' + project[imageName])
-  } catch (e) {
-    // let random = Math.floor(Math.random() * (10 - 1)) + 1;
-    let random = project.title.length - 20
-    imgURL = 'https://picsum.photos/' + (300 + random) + '/' + (300 + random)
-  }
-  return imgURL
-}
+// export const getImageURL = (project, imageName) => {
+//   imageName = imageName || 'mainImage'
+//   let imgURL = {}
+//   try {
+//     imgURL = require('../../images/' + project.id + '/' + project[imageName])
+//   } catch (e) {
+//     // let random = Math.floor(Math.random() * (10 - 1)) + 1;
+//     let random = project.title.length - 20
+//     imgURL = 'https://picsum.photos/' + (300 + random) + '/' + (300 + random)
+//   }
+//   return imgURL
+// }
 
 //was findById (changed)
-export const getProject = id => {
-  return projects.find(proj => proj.id === id)
+export const getProject = (id) => {
+  return projects.find((proj) => proj.id === id)
 }
 
 export const categoriesToString = (categories, separator) => {
@@ -110,8 +110,8 @@ export const LogoIcon = ({ type }) => {
   }
 }
 
-const projectArraysToString = proj => {
-  const transform = array =>
+const projectArraysToString = (proj) => {
+  const transform = (array) =>
     array
       .join(',')
       .replace(new RegExp(' ', 'g'), '_')
@@ -124,7 +124,7 @@ const projectArraysToString = proj => {
   return proj
 }
 
-export const getRelatedProjects = project =>
+export const getRelatedProjects = (project) =>
   sortzzy.sort(
     projects.map(projectArraysToString),
     projectArraysToString(project),
@@ -157,8 +157,8 @@ export const getRelatedProjects = project =>
     { dataOnly: true, sorted: true }
   )
 
-export const getNextProject = project => {
-  let nextIndex = projects.findIndex(p => p.id == project.id) + 1
+export const getNextProject = (project) => {
+  let nextIndex = projects.findIndex((p) => p.id == project.id) + 1
   if (nextIndex >= projects.length) {
     nextIndex = 0
   }
@@ -168,6 +168,6 @@ export const getNextProject = project => {
 export default { ...data, projects }
 
 export const getDocument = (collection, name) =>
-  data[collection] && data[collection].filter(page => page.name === name)[0]
+  data[collection] && data[collection].filter((page) => page.name === name)[0]
 
-export const getDocuments = collection => data[collection] || []
+export const getDocuments = (collection) => data[collection] || []
