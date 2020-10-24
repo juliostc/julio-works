@@ -15,8 +15,6 @@ import Link from '@material-ui/core/Link'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 
-import { getImageURL } from '../data'
-
 //my components
 
 import LazyImage from './LazyImage'
@@ -28,7 +26,7 @@ import { getImageSrc, getImageSrcset } from '../util/getImageUrl'
 
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     //maxWidth: 304,
     margin: 'auto',
@@ -120,7 +118,7 @@ const ProjectCard = ({ project, ...props }) => {
   const longTitle = project.title.length > 25
 
   const smallCard =
-    useMediaQuery(theme => theme.breakpoints.down('xs')) || props.small
+    useMediaQuery((theme) => theme.breakpoints.down('xs')) || props.small
 
   const cardHeight = props.height //"auto" would work, for example
     ? props.height
