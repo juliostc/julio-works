@@ -3,12 +3,12 @@ import concat from 'clsx'
 
 import { makeStyles } from '@material-ui/core/styles'
 
-import Box from '@material-ui/core/Box'
+// import Box from '@material-ui/core/Box'
 
 // import Emoji from "react-emoji-render";
 import { CenterBox } from './Utils'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
   },
@@ -78,7 +78,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const Stamp = props => {
+const Stamp = (props) => {
   const noText =
     props.noText || !(props.text || props.bottomText || props.topText)
 
@@ -188,7 +188,7 @@ const Stamp = props => {
             !!props.bw && styles.bwFill
           )}
           style={
-            props.corner == 'topleft'
+            props.corner === 'topleft'
               ? {
                   transformOrigin: 'center',
                   transform: 'rotate(-90deg)',

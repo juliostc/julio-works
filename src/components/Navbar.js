@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Link from '@material-ui/core/Link'
 
-const styles = theme => {
+const styles = (theme) => {
   return {
     root: {
       flexGrow: 1,

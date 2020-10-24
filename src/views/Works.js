@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 
 //my components
 import Stamp from '../components/Stamp'
-import { CenterBox, CentralColumn, Surface } from '../components/Utils'
+import { CenterBox, Surface } from '../components/Utils'
 import ProjectCard from '../components/ProjectCard'
 import FilterChips from '../components/FilterChips'
 import ProjectThemeProvider from '../components/ProjectThemeProvider'
@@ -17,7 +17,7 @@ import Typography from '@material-ui/core/Typography'
 
 import { withStyles } from '@material-ui/core/styles'
 
-const styles = theme => {
+const styles = (theme) => {
   return {
     root: {
       [theme.breakpoints.up('sm')]: {
@@ -43,11 +43,13 @@ class WorksView extends Component {
   onFilterChange(filterTerms) {
     let filteredProjs = []
 
-    if (filterTerms.length == 0) {
+    if (filterTerms.length === 0) {
       filteredProjs = this.allProjects
     } else {
-      filteredProjs = this.allProjects.filter(proj => {
-        return proj.categories.some(category => filterTerms.includes(category))
+      filteredProjs = this.allProjects.filter((proj) => {
+        return proj.categories.some((category) =>
+          filterTerms.includes(category)
+        )
         //.some returns true if any of the loop iterations return true
       })
     }
@@ -109,7 +111,7 @@ class WorksView extends Component {
                   </Typography>
                 </Box>
                 <Grid container spacing={3}>
-                  {projects.map(proj => (
+                  {projects.map((proj) => (
                     <Grid item xs={12} sm={6} md={4}>
                       <ProjectThemeProvider project={proj} type="dark">
                         <ProjectCard project={proj}></ProjectCard>

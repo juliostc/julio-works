@@ -121,7 +121,7 @@ const projectArraysToString = (proj) => {
     categoriesToString: !!proj.categories && transform(proj.categories),
     toolsToString: !!proj.tools && transform(proj.tools),
   }
-  return proj
+  // return proj
 }
 
 export const getRelatedProjects = (project) =>
@@ -158,7 +158,7 @@ export const getRelatedProjects = (project) =>
   )
 
 export const getNextProject = (project) => {
-  let nextIndex = projects.findIndex((p) => p.id == project.id) + 1
+  let nextIndex = projects.findIndex((p) => p.id === project.id) + 1
   if (nextIndex >= projects.length) {
     nextIndex = 0
   }

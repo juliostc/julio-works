@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import cx from 'clsx'
 
 import { Link as RouterLink } from 'react-router-dom'
@@ -17,8 +17,8 @@ import Grid from '@material-ui/core/Grid'
 
 //my components
 
-import LazyImage from './LazyImage'
-import { getImageSrc, getImageSrcset } from '../util/getImageUrl'
+// import LazyImage from './LazyImage'
+import { getImageSrc } from '../util/getImageUrl'
 
 //mui treasury
 // import { useCoverCardMediaStyles } from "@mui-treasury/styles/cardMedia/cover";

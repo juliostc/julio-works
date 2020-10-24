@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import cx from 'clsx'
+// import cx from 'clsx'
 
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -9,7 +9,7 @@ import MuiButton from '@material-ui/core/Button'
 
 import { LogoIcon } from '../util/data'
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     display: 'inline-flex',
     verticalAlign: 'text-middle',

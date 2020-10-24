@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
 import cx from 'clsx'
 
-import { Link as RouterLink } from 'react-router-dom'
+// import { Link as RouterLink } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/styles'
 
@@ -21,7 +21,7 @@ import UnderlinedLink from './UnderlinedLink'
 
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     //maxWidth: 304,
     margin: 'auto',
@@ -105,7 +105,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const ListedProject = props => {
+const ListedProject = (props) => {
   const styles = useStyles()
   //const mediaStyles = useCoverCardMediaStyles();
   // const shadowStyles = useLightTopShadowStyles();
@@ -115,7 +115,7 @@ const ListedProject = props => {
   const longTitle = project.title.length > 25
 
   const smallCard =
-    useMediaQuery(theme => theme.breakpoints.down('xs')) || props.small
+    useMediaQuery((theme) => theme.breakpoints.down('xs')) || props.small
 
   return (
     <Grid container spacing={2}>

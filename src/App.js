@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 
 import ScrollToTop from './components/ScrollToTop'
 import Meta from './components/Meta'
-import ProjectCard from './components/ProjectCard'
+// import ProjectCard from './components/ProjectCard'
 // import Home from './old-views/Home'
 // import About from './old-views/About'
 // import Blog from './old-views/Blog'
@@ -17,10 +17,10 @@ import Footer from './components/Footer'
 import ServiceWorkerNotifications from './components/ServiceWorkerNotifications'
 
 //Views
-import HomeView from './views/Home'
+// import HomeView from './views/Home'
 import WorksView from './views/Works'
 import ProjectView from './views/Project'
-import AboutView from './views/About'
+// import AboutView from './views/About'
 import NoMatch from './views/NoMatch'
 
 //Material UI
@@ -32,9 +32,9 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 //my components
 import NavBar from './components/Navbar'
 
-import data, { getDocument, getDocuments } from './util/data'
+import data, { getDocument } from './util/data'
 import { slugify } from './util/url'
-import { documentHasTerm, getCollectionTerms } from './util/collection'
+// import { documentHasTerm, getCollectionTerms } from './util/collection'
 
 let theme = createMuiTheme({
   palette: {
@@ -57,7 +57,7 @@ theme = responsiveFontSizes(theme)
 const RouteWithMeta = ({ component: Component, ...props }) => (
   <Route
     {...props}
-    render={routeProps => (
+    render={(routeProps) => (
       <Fragment>
         <Meta {...props} />
         <Component {...routeProps} {...props} />
@@ -85,7 +85,7 @@ class App extends Component {
     // const posts = this.getDocuments('posts').filter(
     //   post => post.status !== 'Draft'
     // )
-    console.warn('fix this!!!')
+    // console.warn('fix this!!!')
 
     const { projects } = data
     // const projects = []

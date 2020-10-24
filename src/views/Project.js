@@ -20,10 +20,7 @@ import UnderlinedLink from '../components/UnderlinedLink'
 import ProjectThemeProvider from '../components/ProjectThemeProvider'
 import { CentralColumn, Surface, Background } from '../components/Utils'
 
-const styles = theme => {
-  root: {
-  }
-}
+const styles = (theme) => {}
 
 class ProjectView extends Component {
   constructor({ project, ...props }) {
@@ -33,7 +30,7 @@ class ProjectView extends Component {
 
   render() {
     const { project } = this.state
-    const { classes } = this.props
+    // const { classes } = this.props
 
     const { Header, Body, Footer } = ViewComponents
 
@@ -46,7 +43,7 @@ class ProjectView extends Component {
     if (team && team.length > 0)
       extras.push([
         'Team',
-        team.map(who => (
+        team.map((who) => (
           <UnderlinedLink href={who.link}>{who.name}</UnderlinedLink>
         )),
       ])
@@ -90,7 +87,7 @@ const ViewComponents = {
     image,
     ...props
   }) => {
-    const styles = makeStyles(theme => ({
+    const styles = makeStyles((theme) => ({
       header: {
         position: 'relative',
         background: 'rgba(0, 0, 0, 0)',
@@ -212,7 +209,7 @@ const ViewComponents = {
     )
   },
   Body: ({ children, body, extras = [], externalLinks, ...props }) => {
-    const styles = makeStyles(theme => ({
+    const styles = makeStyles((theme) => ({
       root: {
         paddingTop: theme.spacing(3),
         paddingBottom: theme.spacing(3),
@@ -232,7 +229,7 @@ const ViewComponents = {
         xs={10}
         leftColumn={
           <CentralColumn>
-            {extras.map(extra => (
+            {extras.map((extra) => (
               <Fragment>
                 <Typography variant="caption">
                   <Box
@@ -256,7 +253,7 @@ const ViewComponents = {
             // className={styles.externalLinks}
             // justify="space-evenly"
           >
-            {externalLinks.map(obj => (
+            {externalLinks.map((obj) => (
               <Grid item>
                 <Button
                   type={obj.type}
@@ -275,18 +272,18 @@ const ViewComponents = {
     )
   },
   Footer: ({ relatedProjects, nextProject, ...props }) => {
-    const styles = makeStyles(theme => ({
-      root: {},
-      sectionTitle: {
-        marginBottom: theme.spacing(2),
-        // textTransform: "uppercase",
-        fontWeight: 'light',
-        textAlign: 'inherit',
-        [theme.breakpoints.down('xs')]: {
-          // textAlign: "center"
-        },
-      },
-    }))()
+    // const styles = makeStyles((theme) => ({
+    //   root: {},
+    //   sectionTitle: {
+    //     marginBottom: theme.spacing(2),
+    //     // textTransform: "uppercase",
+    //     fontWeight: 'light',
+    //     textAlign: 'inherit',
+    //     [theme.breakpoints.down('xs')]: {
+    //       // textAlign: "center"
+    //     },
+    //   },
+    // }))()
     return (
       <Box m={4}>
         <Grid container spacing={8}>
@@ -310,7 +307,7 @@ const ViewComponents = {
                 </Typography>
               </Grid>
               {/* skips 0 because 0 is literally the same project */}
-              {[1, 2, 3].map(number => {
+              {[1, 2, 3].map((number) => {
                 return relatedProjects[number] ? (
                   <Grid item xs>
                     <ProjectThemeProvider project={relatedProjects[number]}>

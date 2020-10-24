@@ -7,13 +7,13 @@ import SmartLink from './SmartLink'
 import { withStyles } from '@material-ui/core/styles'
 
 import Link from '@material-ui/core/Link'
-import { borderBottom } from '@material-ui/system'
+// import { borderBottom } from '@material-ui/system'
 
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
+// import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import { Typography } from '@material-ui/core'
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     // borderBottom: "1px solid " + theme.palette.primary.main, //default
     display: 'inline-flex',
@@ -54,7 +54,7 @@ export class UnderlinedLink extends Component {
         component={SmartLink}
         className={cx(
           classes.root,
-          color == 'secondary' && classes.colorSecondary,
+          color === 'secondary' && classes.colorSecondary,
           className
         )}
         underline="none"

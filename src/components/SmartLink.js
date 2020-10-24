@@ -13,5 +13,5 @@ export default function SmartLink({ to, children, className, ...props }) {
       {children}
     </RouterLink>
   )
-  return null
+  // return null
 }
