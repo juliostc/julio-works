@@ -48,7 +48,7 @@ let theme = createMuiTheme({
     },
   },
   typography: {
-    fontFamily: 'Open Sans, sans-serif',
+    fontFamily: 'Inter, sans-serif',
   },
 })
 
