@@ -20,7 +20,7 @@ import ServiceWorkerNotifications from './components/ServiceWorkerNotifications'
 // import HomeView from './views/Home'
 import WorksView from './views/Works'
 import ProjectView from './views/Project'
-// import AboutView from './views/About'
+import AboutView from './views/About'
 import NoMatch from './views/NoMatch'
 
 //Material UI
@@ -138,13 +138,14 @@ class App extends Component {
                 projects={projects}
               />
 
-              {/* <RouteWithMeta
-                path="/about/"
+              <RouteWithMeta
+                path="/about"
                 exact
                 component={AboutView}
                 fields={getDocument('pages', 'about')}
               />
 
+              {/*
               <RouteWithMeta
                 path="/projects/"
                 exact

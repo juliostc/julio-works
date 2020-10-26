@@ -71,8 +71,8 @@ class Navbar extends Component {
           <Button
             variant="h6"
             component={RouterLink}
-            to="/aboutme"
-            color="textSecondary"
+            to="/about"
+            color="secondary"
             disableRipple
           >
             <Typography color="textSecondary" variant="body2">
