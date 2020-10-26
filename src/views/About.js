@@ -12,7 +12,7 @@ const About = () => (
       </div>
     </section>
     <Helmet>
-      <title>Julio Carvalho | About me</title>
+      <title>About me</title>
       <body className="body--AboutMe" />
     </Helmet>
   </div>

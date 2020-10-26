@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import Helmet from 'react-helmet'
+
 //my components
 import Stamp from '../components/Stamp'
 import { CenterBox, Surface } from '../components/Utils'
@@ -66,6 +68,11 @@ class WorksView extends Component {
 
     return (
       <Grid container className={classes.root}>
+        {/* DEPOIS DESCOMENTAR
+        <Helmet>
+          <title>Works</title>
+          <body className="body--Works" />
+        </Helmet> */}
         <Grid item xs={12} sm={4} md={4}>
           <Box m={2}>
             <Box m="auto" mb={6} mt={6} maxWidth={'50%'}>
