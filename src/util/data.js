@@ -9,6 +9,8 @@ import FacebookIcon from '@material-ui/icons/Facebook'
 import YouTubeIcon from '@material-ui/icons/YouTube'
 import LanguageIcon from '@material-ui/icons/Language' //this is the "web" logo
 import GitHubIcon from '@material-ui/icons/GitHub'
+import TwitterIcon from '@material-ui/icons/Twitter'
+import MailIcon from '@material-ui/icons/Mail'
 
 const sortByMostRecent = (a, b) => {
   if (a.date > b.date) {
@@ -105,6 +107,10 @@ export const LogoIcon = ({ type }) => {
       return <FacebookIcon></FacebookIcon>
     case 'github':
       return <GitHubIcon></GitHubIcon>
+    case 'twitter':
+      return <TwitterIcon></TwitterIcon>
+    case 'email':
+      return <MailIcon></MailIcon>
     default:
       return null
   }
