@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Helmet from 'react-helmet'
+// import Helmet from 'react-helmet'
 
 //my components
 import Stamp from '../components/Stamp'
