@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   details: {
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
   },
