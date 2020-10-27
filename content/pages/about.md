@@ -1,6 +1,6 @@
 ---
 title: About me
-featuredImage: /images/uploads/eu-estudio.jpg
+featuredImage: /images/uploads/eu-estudio-crop.jpg
 subtitle: About me
 section1: >-
   ## Lorem Ipsum
