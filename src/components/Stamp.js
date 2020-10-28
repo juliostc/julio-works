@@ -37,9 +37,6 @@ const useStyles = makeStyles((theme) => ({
     fill: theme.palette.text.primary,
   },
 
-  textpath: {
-    alignmentBaseline: 'central',
-  },
   smalltext: {
     fontSize: theme.typography.caption.fontSize,
   },
@@ -102,36 +99,40 @@ const Stamp = (props) => {
 
   const getCirclePath = (textRadius, sweepFlag) => {
     let invertedSweepFlag = sweepFlag ? 0 : 1
-    return (
-      'M' +
-      cx +
-      ',' +
-      cy +
-      ' m -' +
-      textRadius +
-      ', 0' +
-      ' a ' +
-      textRadius +
-      ',' +
-      textRadius +
-      ' 0 ' +
-      sweepFlag +
-      ',' +
-      invertedSweepFlag +
-      ' ' +
-      textRadius * 2 +
-      ', 0 a ' +
-      textRadius +
-      ',' +
-      textRadius +
-      ' 0 ' +
-      sweepFlag +
-      ',' +
-      invertedSweepFlag +
-      ' ' +
-      textRadius * -2 +
-      ', 0'
-    )
+    const r = textRadius
+    return `M${cx},${cy} m -${r}, 0 a ${r},${r} 0 ${sweepFlag},${invertedSweepFlag} ${
+      r * 2
+    }, 0 a ${r},${r} 0 ${sweepFlag},${invertedSweepFlag} ${r * -2}, 0`
+    // return (
+    //   'M' +
+    //   cx +
+    //   ',' +
+    //   cy +
+    //   ' m -' +
+    //   textRadius +
+    //   ', 0' +
+    //   ' a ' +
+    //   textRadius +
+    //   ',' +
+    //   textRadius +
+    //   ' 0 ' +
+    //   sweepFlag +
+    //   ',' +
+    //   invertedSweepFlag +
+    //   ' ' +
+    //   textRadius * 2 +
+    //   ', 0 a ' +
+    //   textRadius +
+    //   ',' +
+    //   textRadius +
+    //   ' 0 ' +
+    //   sweepFlag +
+    //   ',' +
+    //   invertedSweepFlag +
+    //   ' ' +
+    //   textRadius * -2 +
+    //   ', 0'
+    // )
   }
 
   const longText = props.text && props.text.length > 14
@@ -201,8 +202,8 @@ const Stamp = (props) => {
             xlinkHref={'#top-circle-' + props.id}
             startOffset="75%"
             textAnchor="middle"
-            className={styles.textpath}
             transform-origin={cx + 'px ' + cy + 'px'}
+            dominantBaseline="central"
           >
             {props.topText || props.text}
           </textPath>
@@ -221,7 +222,7 @@ const Stamp = (props) => {
             xlinkHref={'#bottom-circle-' + props.id}
             startOffset="25%"
             textAnchor="middle"
-            className={concat(styles.textpath)}
+            dominantBaseline="central"
           >
             {props.bottomText || props.text}
           </textPath>
