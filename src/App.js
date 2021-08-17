@@ -32,7 +32,7 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 //my components
 import NavBar from './components/Navbar'
 
-import data, { getDocument } from './util/data'
+import data, { getDocument , getDocuments } from './util/data'
 import { slugify } from './util/url'
 // import { documentHasTerm, getCollectionTerms } from './util/collection'
 
@@ -81,8 +81,12 @@ class App extends Component {
       headerScripts,
     } = globalSettings
  
-    const aux = getDocument('settings', 'customRedirects')
-    const customRedirects = aux && aux.customRedirects && aux.customRedirects.customRedirects
+    const aux = getDocument('settings', 'customredirects')
+ 
+    const customRedirects = aux && aux.customRedirects 
+ 
+
+
     //settings -> customRedirects -> customRedirects
 
     //this should go to the works view
