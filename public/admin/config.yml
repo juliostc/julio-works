@@ -438,6 +438,11 @@ collections: # A list of collections the CMS should be able to edit
       - file: 'content/settings/customredirects.yml'
         label: 'Custom Redirects'
         name: 'customRedirects'
-        fields: 
-          - { label: 'Custom URL julio.works/for/*URL*', name: customURL, widget: string}
-          - { label: 'Redirect URL', name: redirectURL, widget: string}
+        fields:
+          - {label: redirects,
+            name: customRedirects,
+            widget: list,
+            fields: [
+              { label: 'Custom URL julio.works/for/*URL*', name: customURL, widget: string},
+              { label: 'Redirect URL', name: redirectURL, widget: string}]
+          }

@@ -81,13 +81,15 @@ class App extends Component {
       headerScripts,
     } = globalSettings
 
+    const { customRedirects } = getDocument('customRedirects', 'customRedirects')
+
     //this should go to the works view
     // const posts = this.getDocuments('posts').filter(
     //   post => post.status !== 'Draft'
     // )
     // console.warn('fix this!!!')
 
-    const { projects, customRedirects } = data
+    const { projects } = data
     // const projects = []
     // const categoriesFromPosts = getCollectionTerms(projects, 'categories')
     // const postCategories = getDocuments('postCategories').filter(
