@@ -32,7 +32,7 @@ import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles'
 //my components
 import NavBar from './components/Navbar'
 
-import data, { getDocument , getDocuments } from './util/data'
+import data, { getDocument } from './util/data'
 import { slugify } from './util/url'
 // import { documentHasTerm, getCollectionTerms } from './util/collection'
 
