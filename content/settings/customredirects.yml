@@ -1,2 +1,5 @@
 customURL: afterverse
 redirectURL: https://colossal-porkpie-727.notion.site/Empresa-X-c1e4676a38284e5f82179ac1f188d4b0
+customRedirects:
+  - customURL: Teste
+    redirectURL: https://colossal-porkpie-727.notion.site/Empresa-X-c1e4676a38284e5f82179ac1f188d4b0
