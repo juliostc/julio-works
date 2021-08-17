@@ -11,7 +11,7 @@ import Link from '@material-ui/core/Link'
 
 // import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
 import SvgIcon from '@material-ui/core/SvgIcon'
-import { Typography } from '@material-ui/core'
+import  Typography  from '@material-ui/core/Typography'
 
 const styles = (theme) => ({
   root: {

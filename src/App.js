@@ -80,8 +80,10 @@ class App extends Component {
       socialMediaCard,
       headerScripts,
     } = globalSettings
-
-    const { customRedirects } = getDocument('customRedirects', 'customRedirects')
+ 
+    const aux = getDocument('settings', 'customRedirects')
+    const customRedirects = aux && aux.customRedirects && aux.customRedirects.customRedirects
+    //settings -> customRedirects -> customRedirects
 
     //this should go to the works view
     // const posts = this.getDocuments('posts').filter(
