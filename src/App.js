@@ -87,7 +87,7 @@ class App extends Component {
     // )
     // console.warn('fix this!!!')
 
-    const { projects } = data
+    const { projects, customRedirects } = data
     // const projects = []
     // const categoriesFromPosts = getCollectionTerms(projects, 'categories')
     // const postCategories = getDocuments('postCategories').filter(
@@ -129,6 +129,9 @@ class App extends Component {
             <NavBar />
 
             <Switch>
+            
+              
+
               <RouteWithMeta
                 path={['/', '/projects']}
                 exact
@@ -177,6 +180,19 @@ class App extends Component {
                     }
                   />
                 )
+              })}
+
+              {customRedirects && customRedirects.map((redir, index) => {
+                return (<RouteWithMeta
+                path={[`/for/${redir.customURL}`]}
+                exact
+                component={() => { 
+                  window.location.href = redir.redirectURL; 
+                  return null;
+             }}
+                description={siteDescription}
+              
+              />)
               })}
 
               {/* {postCategories.map(postCategory => {
