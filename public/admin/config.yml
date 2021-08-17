@@ -157,12 +157,7 @@ collections: # A list of collections the CMS should be able to edit
               required: false,
             }
           - { label: Noindex, name: noindex, widget: boolean, required: false }
-  - name: 'customRedirects'
-    label: 'Custom Redirects'
-    create: true
-    fields: 
-    - {label: 'Custom URL julio.works/for/*URL*', name: customURL, widget: string}
-    - { label: 'Redirect URL', name: redirectURL, widget: string}
+ 
 
   - name: 'pages'
     label: 'Page'
@@ -440,3 +435,9 @@ collections: # A list of collections the CMS should be able to edit
               widget: boolean,
               required: false,
             }
+      - file: 'content/settings/customredirects.yml'
+        label: 'Custom Redirects'
+        name: 'customRedirects'
+        fields: 
+          - { label: 'Custom URL julio.works/for/*URL*', name: customURL, widget: string}
+          - { label: 'Redirect URL', name: redirectURL, widget: string}
